@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiritori Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4a6fa5, #8cb3e8);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .player-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .player {
+            padding: 12px;
+            border-radius: 8px;
+            width: 45%;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .active {
+            background: #ffcb77;
+            color: #222;
+            box-shadow: 0 0 10px rgba(255, 203, 119, 0.8);
+        }
+        
+        .inactive {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ddd;
+        }
+        
+        .word-chain {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 50px;
+            overflow-y: auto;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        input {
+            flex-grow: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        button {
+            padding: 12px 18px;
+            background: #ff7851;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #ff5733;
+            transform: scale(1.05);
+        }
+        
+        .rules {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .invalid {
+            color: #ff4d4d;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        .used-words {
+            color: #ddd;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: #ffcb77;
+            border-radius: 3px;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multilingual Shiritori</h1>
+    <div class="game-container">
+        <div class="player-info">
+            <div id="player1" class="player active">
+                <h3>Player 1</h3>
+                <p>Score: <span id="score1">0</span></p>
+            </div>
+            <div id="player2" class="player inactive">
+                <h3>Player 2</h3>
+                <p>Score: <span id="score2">0</span></p>
+            </div>
+        </div>
+        <div class="word-chain" id="wordChain">
+            <p>The game will start with a random word...</p>
+        </div>
+        <div class="input-container">
+            <input type="text" id="wordInput" placeholder="Enter a word...">
+            <button id="submitWord">Submit</button>
+        </div>
+        <div id="feedback"></div>
+        <div class="used-words">
+            <p>Words used: <span id="usedWords"></span></p>
+        </div>
+        <div class="rules">
+            <h3>Rules:</h3>
+            <p>1. Each player must enter a word that begins with the last letter of the previous word.</p>
+            <p>2. Words cannot be repeated in the same game.</p>
+            <p>3. Words must be at least 2 letters long.</p>
+            <p><u><b>4. If you fail to answer 3 times, your turn is skipped.</b></u></p>
+            <p>5. You may use either Romaji or Hiragana for Japanese words.</p>
+            <p>6. Each valid word earns 1 point.</p>
+            <p>7. Kanji cannot be used.</p>
+        </div>
+        <span id="loader" style="display:none;">Checking word...</span>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
