@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/8c502a33-9d73-40d1-b601-dc883f6ca9b5)
+
+
 # KyuTech X APU Mini Hackathon Project
 This project was undertaken as part of the KyuTech X APU Mini Hackathon Event.
 
