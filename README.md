@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8c502a33-9d73-40d1-b601-dc883f6ca9b5)
+<img src="https://github.com/user-attachments/assets/8c502a33-9d73-40d1-b601-dc883f6ca9b5" width="150">
 
 
 # KyuTech X APU Mini Hackathon Project
